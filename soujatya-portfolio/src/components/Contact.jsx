@@ -1,16 +1,12 @@
-import React, { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState } from 'react';
 
 const Contact = () => {
-  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState({ type: '', message: '' });
 
   const handleChange = (e) => {
     setFormData({
@@ -19,48 +15,13 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    setStatus({ type: '', message: '' });
-
-    try {
-      // EmailJS configuration from environment variables
-      const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_email: 'soujatyabhunia2003@gmail.com'
-      };
-
-      const result = await emailjs.send(
-        serviceID,
-        templateID,
-        templateParams,
-        publicKey
-      );
-
-      if (result.status === 200) {
-        setStatus({
-          type: 'success',
-          message: 'Message sent successfully! I will get back to you soon.'
-        });
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }
-    } catch (error) {
-      console.error('Email send error:', error);
-      setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again or contact me directly.'
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    // You can integrate with email service or backend API
+    alert('Thank you for your message! I will get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const contactInfo = [
@@ -121,172 +82,115 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-slate-100 dark:bg-gray-900 text-gray-800 dark:text-white w-full transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating Message Icons */}
-        <div className="absolute top-20 left-[10%] text-blue-400 opacity-10 animate-float">
-          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.7l-8 5.334L4 8.7V6.297l8 5.333 8-5.333V8.7z"/>
-          </svg>
-        </div>
-        <div className="absolute top-40 right-[15%] text-purple-400 opacity-10 animate-float-delayed">
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-32 left-[20%] text-green-400 opacity-10 animate-float">
-          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        
-        {/* Connection Network Lines */}
-        <div className="absolute top-1/4 right-[8%] w-16 h-16 border border-blue-400/20 rounded-full animate-pulse-soft"></div>
-        <div className="absolute bottom-1/3 left-[12%] w-12 h-12 border border-purple-400/20 rounded-full animate-pulse-soft animation-delay-1000"></div>
-        
-        {/* Floating Contact Symbols */}
-        <div className="absolute top-60 right-[25%] text-indigo-400 opacity-8 animate-float-delayed">
-          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-          </svg>
-        </div>
-        <div className="absolute bottom-20 right-[35%] text-cyan-400 opacity-8 animate-float">
-          <span className="text-sm font-mono">@</span>
-        </div>
-      </div>
-
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-gray-900 text-white w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 animate-fade-in-up">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Get In Touch
-            </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-              Let's connect and discuss opportunities, collaborations, or just chat about technology.
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-4">
+            Get In Touch
+          </h2>
+          <p className="text-gray-300 text-center mb-8 sm:mb-12 lg:mb-16 max-w-3xl mx-auto text-base sm:text-lg lg:text-xl leading-relaxed">
+            I'm always open to discussing new opportunities, collaborations, or just having a chat about technology. 
+            Feel free to reach out!
+          </p>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             {/* Contact Information */}
-            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-all duration-300 h-full min-h-[600px] flex flex-col animate-fade-in-up animation-delay-400 hover:shadow-xl hover:scale-[1.02] group">
-              <h3 className="text-xl font-semibold mb-8 text-gray-800 dark:text-white">Contact Information</h3>
+            <div>
+              <h3 className="text-2xl font-semibold mb-8">Contact Information</h3>
               
-              <div className="space-y-6 flex-1">
+              <div className="space-y-6 mb-8">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className={`flex items-start animate-fade-in-up group/item hover:bg-gray-50 dark:hover:bg-gray-700/50 p-3 rounded-lg transition-all duration-300 hover:scale-105`} style={{animationDelay: `${600 + index * 100}ms`}}>
-                    <div className="bg-blue-600 dark:bg-blue-600 p-3 rounded-lg mr-4 flex-shrink-0 group-hover/item:scale-110 group-hover/item:shadow-lg transition-all duration-300">
+                  <div key={index} className="flex items-center">
+                    <div className="bg-blue-600 p-3 rounded-full mr-4">
                       {info.icon}
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <h4 className="font-medium text-gray-700 dark:text-gray-200 mb-1">{info.title}</h4>
+                    <div>
+                      <h4 className="font-semibold text-gray-200">{info.title}</h4>
                       {info.link ? (
                         <a 
                           href={info.link} 
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 break-all hover:underline"
+                          className="text-blue-400 hover:text-blue-300 transition-colors duration-300"
                         >
                           {info.value}
                         </a>
                       ) : (
-                        <p className="text-gray-600 dark:text-gray-300">{info.value}</p>
+                        <p className="text-gray-300">{info.value}</p>
                       )}
                     </div>
                   </div>
                 ))}
-                
-                {/* Social Links */}
-                <div className="mt-8 animate-fade-in-up animation-delay-1000">
-                  <h4 className="font-semibold mb-4 text-gray-800 dark:text-white">Connect With Me</h4>
-                  <div className="flex space-x-4">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={index}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`bg-gray-200 dark:bg-gray-700 p-3 rounded-lg ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg animate-scale-in`}
-                        style={{animationDelay: `${1200 + index * 100}ms`}}
-                        title={social.name}
-                      >
-                        {social.icon}
-                      </a>
-                    ))}
-                  </div>
+              </div>
+              
+              {/* Social Links */}
+              <div>
+                <h4 className="text-xl font-semibold mb-4">Connect With Me</h4>
+                <div className="flex space-x-4">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`bg-gray-700 p-3 rounded-full ${social.color} transition-colors duration-300`}
+                      title={social.name}
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
                 </div>
               </div>
               
               {/* Availability */}
-              <div className="bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 p-6 rounded-lg mt-8 animate-fade-in-up animation-delay-1600 hover:bg-green-200 dark:hover:bg-green-900/40 transition-all duration-300 hover:scale-105">
-                <h4 className="font-semibold mb-2 text-green-700 dark:text-green-400">Currently Available</h4>
-                <p className="text-green-600 dark:text-gray-300 leading-relaxed">
-                  Seeking internship and full-time opportunities. Available for working remote or on-site.
+              <div className="mt-8 bg-green-900/30 border border-green-700 p-6 rounded-lg">
+                <h4 className="text-xl font-semibold mb-2 text-green-400">Currently Available</h4>
+                <p className="text-gray-300">
+                  I'm actively seeking internship and full-time opportunities in software development. 
+                  Available for immediate start after graduation in 2026.
                 </p>
               </div>
             </div>
             
             {/* Contact Form */}
-            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-all duration-300 h-full min-h-[600px] flex flex-col animate-fade-in-up animation-delay-800 hover:shadow-xl hover:scale-[1.02]">
-              <h3 className="text-xl font-semibold mb-8 text-gray-800 dark:text-white">Send a Message</h3>
+            <div>
+              <h3 className="text-2xl font-semibold mb-8">Send a Message</h3>
               
-              <form ref={form} onSubmit={handleSubmit} className="space-y-6 flex-1">
-                {/* Status Message */}
-                {status.message && (
-                  <div className={`p-4 rounded-lg border animate-fade-in-up ${
-                    status.type === 'success' 
-                      ? 'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700 text-green-700 dark:text-green-400'
-                      : 'bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-700 text-red-700 dark:text-red-400'
-                  }`}>
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0">
-                        {status.type === 'success' ? (
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
-                          </svg>
-                        ) : (
-                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
-                          </svg>
-                        )}
-                      </div>
-                      <div className="ml-3">
-                        <p className="text-sm font-medium">{status.message}</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-up animation-delay-1000">
-                  <div className="group">
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
-                      placeholder="Full Name *"
-                    />
-                  </div>
-                  
-                  <div className="group">
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      disabled={isLoading}
-                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
-                      placeholder="Email Address *"
-                    />
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-gray-300 font-medium mb-2">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-300"
+                    placeholder="Your full name"
+                  />
                 </div>
                 
-                <div className="animate-fade-in-up animation-delay-1200 group">
+                <div>
+                  <label htmlFor="email" className="block text-gray-300 font-medium mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-300"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="subject" className="block text-gray-300 font-medium mb-2">
+                    Subject *
+                  </label>
                   <input
                     type="text"
                     id="subject"
@@ -294,54 +198,46 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    disabled={isLoading}
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
-                    placeholder="Subject *"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-300"
+                    placeholder="What's this about?"
                   />
                 </div>
                 
-                <div className="flex-1 animate-fade-in-up animation-delay-1400 group">
+                <div>
+                  <label htmlFor="message" className="block text-gray-300 font-medium mb-2">
+                    Message *
+                  </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    disabled={isLoading}
-                    rows="6"
-                    className="w-full h-full min-h-[120px] px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
-                    placeholder="Your message *"
+                    rows="5"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white transition-colors duration-300"
+                    placeholder="Tell me about your project, opportunity, or just say hello!"
                   ></textarea>
                 </div>
                 
                 <button
                   type="submit"
-                  disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center animate-fade-in-up animation-delay-1600 hover:scale-105 hover:shadow-lg active:scale-95"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center"
                 >
-                  {isLoading ? (
-                    <>
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                      </svg>
-                      Send Message
-                    </>
-                  )}
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                  </svg>
+                  Send Message
                 </button>
               </form>
-              
-              <p className="text-gray-500 dark:text-gray-400 text-xs text-center mt-4 animate-fade-in-up animation-delay-1800">
-                📧 I typically respond within 24 hours
-              </p>
             </div>
+          </div>
+          
+          {/* Quick Response Note */}
+          <div className="text-center mt-12 p-6 bg-gray-800 rounded-lg">
+            <p className="text-gray-300">
+              📧 I typically respond to emails within 24 hours. 
+              For urgent matters, feel free to reach out via phone or LinkedIn.
+            </p>
           </div>
         </div>
       </div>

@@ -2,84 +2,104 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="py-6 sm:py-8 bg-slate-50 dark:bg-gray-900 w-full min-h-screen flex items-center transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full animate-float"></div>
-        <div className="absolute top-1/2 right-20 w-16 h-16 bg-purple-500/10 rounded-full animate-float-reverse delay-1000"></div>
-        <div className="absolute bottom-32 left-1/3 w-12 h-12 bg-indigo-500/10 rounded-full animate-bounce delay-2000"></div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-1/4 right-1/4 w-14 h-14 border border-blue-300/20 dark:border-blue-600/20 rotate-45 animate-spin-slow"></div>
-        <div className="absolute bottom-1/4 left-1/5 w-10 h-10 border border-purple-300/20 dark:border-purple-600/20 rotate-12 animate-float"></div>
-        
-        {/* Gradient Orbs */}
-        <div className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-xl animate-float-slow"></div>
-        <div className="absolute bottom-10 left-10 w-40 h-40 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-float-reverse"></div>
-      </div>
-
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50 w-full">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-8 animate-fade-in-up">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              About Me
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Education Journey
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base max-w-xl mx-auto">
-              Passionate developer crafting innovative solutions
+            <p className="text-gray-600 text-lg sm:text-xl max-w-2xl mx-auto">
+              Building a strong foundation in computer science and technology
             </p>
           </div>
 
-          {/* Profile Summary */}
-          <div className="space-y-8">
-            {/* Who I Am */}
-            <div className="bg-white/80 dark:bg-gray-700 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-600 text-center transition-all duration-500 backdrop-blur-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-300/50 dark:hover:border-blue-600/50 group animate-fade-in-up delay-300">
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Who I Am</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg max-w-4xl mx-auto">
-                I'm a passionate Computer Science student and aspiring full-stack developer with a love for creating 
-                innovative digital solutions. My journey in technology is driven by curiosity and a commitment to 
-                continuous learning. I specialize in building modern web applications using cutting-edge technologies 
-                like React, Node.js, and Python, turning complex challenges into elegant solutions.
-              </p>
-            </div>
+          {/* Education Timeline */}
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-blue-500 to-purple-500 h-full rounded-full"></div>
 
-            {/* Core Strengths */}
-            <div className="bg-white/80 dark:bg-gray-700 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-600 transition-all duration-500 backdrop-blur-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-300/50 dark:hover:border-blue-600/50 group animate-fade-in-up delay-500">
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">Core Strengths</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div className="text-center animate-scale-in delay-700 hover:scale-105 transition-transform duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 hover:shadow-lg transition-shadow duration-300">
-                    <div className="w-8 h-8 bg-white rounded-full animate-pulse-soft"></div>
-                  </div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white mb-1">Full-Stack Development</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">End-to-end web solutions</p>
-                </div>
-                
-                <div className="text-center animate-scale-in delay-900 hover:scale-105 transition-transform duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-3 hover:shadow-lg transition-shadow duration-300">
-                    <div className="w-8 h-8 bg-white rounded-full animate-pulse-soft"></div>
-                  </div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white mb-1">Problem Solving</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Creative & analytical thinking</p>
-                </div>
-                
-                <div className="text-center animate-scale-in delay-1000 hover:scale-105 transition-transform duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 hover:shadow-lg transition-shadow duration-300">
-                    <div className="w-8 h-8 bg-white rounded-full animate-pulse-soft"></div>
-                  </div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white mb-1">UI/UX Design</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">User-centered interfaces</p>
-                </div>
-                
+            {/* Current Education */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-6 h-6 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+              </div>
+              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <div className="w-8 h-8 bg-white rounded-full"></div>
+                  <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.75 2.524z"/>
+                    </svg>
                   </div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white mb-1">Team Collaboration</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">Effective communication</p>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">B.Tech Computer Science Engineering</h3>
+                  <p className="text-blue-600 font-semibold mb-2">Adamas University</p>
+                  <p className="text-gray-500 mb-4">2022 - Pursuing (4th Year)</p>
+                  <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full">
+                    <span className="text-blue-800 font-semibold">CGPA: 8.26</span>
+                  </div>
                 </div>
               </div>
+            </div>
+
+            {/* Higher Secondary */}
+            <div className="relative mb-16">
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-6 h-6 bg-green-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+              </div>
+              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 0a1 1 0 100 2h.01a1 1 0 100-2H9zm2 0a1 1 0 100 2h.01a1 1 0 100-2H11z" clipRule="evenodd"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Higher Secondary Education</h3>
+                  <p className="text-green-600 font-semibold mb-2">Asadtala Binode Vidyapith</p>
+                  <p className="text-gray-500 mb-4">2019 - 2021</p>
+                  <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full">
+                    <span className="text-green-800 font-semibold">95%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Secondary */}
+            <div className="relative">
+              <div className="flex items-center justify-center mb-8">
+                <div className="w-6 h-6 bg-purple-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+              </div>
+              <div className="bg-white rounded-2xl shadow-xl p-8 max-w-lg mx-auto transform hover:scale-105 transition-transform duration-300">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-2">Secondary Education</h3>
+                  <p className="text-purple-600 font-semibold mb-2">Asadtala Binode Vidyapith</p>
+                  <p className="text-gray-500 mb-4">2013 - 2019</p>
+                  <div className="inline-flex items-center px-4 py-2 bg-purple-100 rounded-full">
+                    <span className="text-purple-800 font-semibold">90%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Achievement Stats */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-4xl font-bold text-blue-600 mb-2">4</div>
+              <div className="text-gray-600">Years of Academic Excellence</div>
+            </div>
+            <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-4xl font-bold text-green-600 mb-2">95%</div>
+              <div className="text-gray-600">Highest Academic Score</div>
+            </div>
+            <div className="text-center bg-white rounded-2xl p-8 shadow-lg">
+              <div className="text-4xl font-bold text-purple-600 mb-2">8.26</div>
+              <div className="text-gray-600">Current CGPA</div>
             </div>
           </div>
         </div>
