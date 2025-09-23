@@ -36,10 +36,7 @@ const Header = () => {
   };
 
   // Play secret song
-  const playSecretSong = () => {
-    // Try to play custom music file first
-    const customMusicPath = `${import.meta.env.VITE_CUSTOM_MUSIC_PATH}nggyu.mp3`;
-    
+  const playSecretSong = async () => {
     // Create or reuse audio element
     if (!audioRef.current) {
       audioRef.current = new Audio();
@@ -52,54 +49,128 @@ const Header = () => {
       return;
     }
 
-    // Try to load and play custom music file
-    audioRef.current.src = customMusicPath;
-    audioRef.current.load();
-    
-    const playCustomAudio = () => {
-      audioRef.current.play()
-        .then(() => {
-          setIsPlaying(true);
-          audioRef.current.onended = () => setIsPlaying(false);
-        })
-        .catch(() => {
-          // Fallback to synthesized audio if custom file fails
-          playFallbackAudio();
-        });
-    };
 
-    // Check if custom file exists/loads
-    audioRef.current.oncanplaythrough = playCustomAudio;
-    audioRef.current.onerror = playFallbackAudio;
+    // Try multiple audio sources for "Never Gonna Give You Up"
+    const audioSources = [
+      // Local file (if exists)
+      '/music/nggyu.mp3',
+      // Archive.org public domain audio
+      'https://archive.org/download/NeverGonnaGiveYouUp/Rick_Astley_-_Never_Gonna_Give_You_Up.mp3',
+      // Alternative archive.org link
+      'https://ia801504.us.archive.org/11/items/NeverGonnaGiveYouUp/Rick_Astley_-_Never_Gonna_Give_You_Up.mp3',
+      // Freesound.org alternative (if available)
+      'https://freesound.org/data/previews/316/316847_4922303-lq.mp3'
+    ];
+
+    // Try each audio source
+    for (let i = 0; i < audioSources.length; i++) {
+      const source = audioSources[i];
+      console.log(`Trying source ${i + 1}: ${source}`);
+      
+      try {
+        const success = await tryAudioSource(source);
+        if (success) {
+          return;
+        }
+      } catch (error) {
+        continue;
+      }
+    }
+
+    // If all sources fail, play fallback audio
+    playFallbackAudio();
+
+    // Helper function to try an audio source
+    function tryAudioSource(src) {
+      return new Promise((resolve, reject) => {
+        const audio = new Audio();
+        
+        // Set up CORS and preload
+        audio.crossOrigin = 'anonymous';
+        audio.preload = 'auto';
+        
+        const timeoutId = setTimeout(() => {
+          audio.src = '';
+          reject(new Error('Timeout'));
+        }, 5000); // 5 second timeout
+
+        audio.oncanplaythrough = () => {
+          clearTimeout(timeoutId);
+          audioRef.current = audio;
+          
+          audio.play()
+            .then(() => {
+              setIsPlaying(true);
+              audio.onended = () => setIsPlaying(false);
+              audio.onerror = () => setIsPlaying(false);
+              resolve(true);
+            })
+            .catch((error) => {
+              reject(error);
+            });
+        };
+
+        audio.onerror = () => {
+          clearTimeout(timeoutId);
+        };
+
+        audio.onabort = () => {
+          clearTimeout(timeoutId);
+        };
+
+        audio.src = src;
+        audio.load();
+      });
+    }
 
     // Fallback synthesized audio function
     function playFallbackAudio() {
       try {
-        // Create a simple audio context for beep sound
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
         
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+        // Rick Roll melody notes (simplified)
+        const notes = [
+          { freq: 440, duration: 0.5 }, // A
+          { freq: 494, duration: 0.5 }, // B
+          { freq: 554, duration: 0.5 }, // C#
+          { freq: 494, duration: 0.5 }, // B
+          { freq: 659, duration: 0.8 }, // E
+          { freq: 659, duration: 0.8 }, // E
+          { freq: 587, duration: 1.0 }  // D
+        ];
+
+        let currentTime = audioContext.currentTime;
         
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1);
-        
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
-        
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 1);
-        
-        oscillator.onended = () => {
-          setIsPlaying(false);
-          audioContext.close();
-        };
+        notes.forEach((note, index) => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.frequency.setValueAtTime(note.freq, currentTime);
+          oscillator.type = 'sine';
+          
+          gainNode.gain.setValueAtTime(0, currentTime);
+          gainNode.gain.linearRampToValueAtTime(0.3, currentTime + 0.1);
+          gainNode.gain.exponentialRampToValueAtTime(0.01, currentTime + note.duration);
+          
+          oscillator.start(currentTime);
+          oscillator.stop(currentTime + note.duration);
+          
+          currentTime += note.duration;
+          
+          // Set playing state for the last note
+          if (index === notes.length - 1) {
+            oscillator.onended = () => {
+              setIsPlaying(false);
+              audioContext.close();
+            };
+          }
+        });
         
         setIsPlaying(true);
       } catch (error) {
-        console.log('Audio not supported');
         setIsPlaying(false);
       }
     }
