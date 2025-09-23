@@ -38,7 +38,7 @@ const Header = () => {
   // Play secret song
   const playSecretSong = () => {
     // Try to play custom music file first
-    const customMusicPath = `${import.meta.env.VITE_CUSTOM_MUSIC_PATH || '/music/'}nggyu.mp3`;
+    const customMusicPath = `${import.meta.env.VITE_CUSTOM_MUSIC_PATH}nggyu.mp3`;
     
     // Create or reuse audio element
     if (!audioRef.current) {
