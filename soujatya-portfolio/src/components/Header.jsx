@@ -30,41 +30,62 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-gray-900 dark:text-white z-50 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <header className="fixed top-0 left-0 right-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-gray-900 dark:text-white z-50 border-b border-gray-200 dark:border-gray-800 transition-all duration-300 animate-slide-down">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="w-full flex items-center justify-between">
-          <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in-up hover:scale-105 transition-transform duration-300 cursor-pointer">
             Soujatya Bhunia
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Home</a>
-            <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">About</a>
-            <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Experience</a>
-            <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Projects</a>
-            <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Skills</a>
-            <a href="#certifications" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Certifications</a>
-            <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Contact</a>
+          <div className="hidden md:flex items-center space-x-8 animate-fade-in-up animation-delay-200">
+            <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Home
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              About
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Experience
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Projects
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Skills
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#certifications" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Certifications
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-110 relative group">
+              Contact
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
             
             {/* Theme Toggle */}
-            <div className="relative">
+            <div className="relative animate-scale-in animation-delay-400">
               <button
                 onClick={() => setShowThemeMenu(!showThemeMenu)}
-                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110 hover:shadow-md"
                 title="Change theme"
               >
                 <ThemeIcon />
               </button>
               
               {showThemeMenu && (
-                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1">
+                <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 animate-fade-in-up">
                   <button
                     onClick={() => {
                       changeTheme('light');
                       setShowThemeMenu(false);
                     }}
-                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center ${
+                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center hover:scale-105 ${
                       theme === 'light' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''
                     }`}
                   >
@@ -78,7 +99,7 @@ const Header = () => {
                       changeTheme('dark');
                       setShowThemeMenu(false);
                     }}
-                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center ${
+                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center hover:scale-105 ${
                       theme === 'dark' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''
                     }`}
                   >
@@ -92,7 +113,7 @@ const Header = () => {
                       changeTheme('system');
                       setShowThemeMenu(false);
                     }}
-                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center ${
+                    className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center hover:scale-105 ${
                       theme === 'system' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''
                     }`}
                   >
@@ -107,11 +128,11 @@ const Header = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="md:hidden flex items-center space-x-2 animate-fade-in-up animation-delay-300">
             {/* Mobile Theme Toggle */}
             <button
               onClick={() => setShowThemeMenu(!showThemeMenu)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-300"
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 hover:scale-110"
               title="Change theme"
             >
               <ThemeIcon />
@@ -119,9 +140,9 @@ const Header = () => {
             
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none"
+              className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none transition-all duration-300 hover:scale-110"
             >
-              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+              <svg className="h-6 w-6 fill-current transition-transform duration-300" viewBox="0 0 24 24" style={{transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}}>
                 {isOpen ? (
                   <path d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
                 ) : (
@@ -134,28 +155,28 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4">
+          <div className="md:hidden mt-4 pb-4 animate-fade-in-up">
             <div className="flex flex-col space-y-4">
-              <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Home</a>
-              <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>About</a>
-              <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Experience</a>
-              <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Projects</a>
-              <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Skills</a>
-              <a href="#certifications" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Certifications</a>
-              <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" onClick={() => setIsOpen(false)}>Contact</a>
+              <a href="#home" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-100" onClick={() => setIsOpen(false)}>Home</a>
+              <a href="#about" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-200" onClick={() => setIsOpen(false)}>About</a>
+              <a href="#experience" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-300" onClick={() => setIsOpen(false)}>Experience</a>
+              <a href="#projects" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-400" onClick={() => setIsOpen(false)}>Projects</a>
+              <a href="#skills" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-500" onClick={() => setIsOpen(false)}>Skills</a>
+              <a href="#certifications" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-600" onClick={() => setIsOpen(false)}>Certifications</a>
+              <a href="#contact" className="hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 hover:scale-105 animate-fade-in-up animation-delay-700" onClick={() => setIsOpen(false)}>Contact</a>
             </div>
           </div>
         )}
         
         {/* Mobile Theme Menu */}
         {showThemeMenu && (
-          <div className="md:hidden absolute right-4 top-16 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1">
+          <div className="md:hidden absolute right-4 top-16 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 animate-fade-in-up">
             <button
               onClick={() => {
                 changeTheme('light');
                 setShowThemeMenu(false);
               }}
-              className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 flex items-center ${
+              className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 flex items-center hover:scale-105 ${
                 theme === 'light' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400' : ''
               }`}
             >

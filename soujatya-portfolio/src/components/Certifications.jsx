@@ -45,10 +45,26 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="py-12 sm:py-16 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20 w-full scroll-mt-20 transition-colors duration-300">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+    <section id="certifications" className="py-12 sm:py-16 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-blue-900/20 w-full scroll-mt-20 transition-colors duration-300 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-20 w-24 h-24 bg-blue-500/10 rounded-full animate-float"></div>
+        <div className="absolute top-2/3 right-1/4 w-16 h-16 bg-purple-500/10 rounded-full animate-float-reverse delay-1000"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-12 h-12 bg-indigo-500/10 rounded-full animate-bounce delay-2000"></div>
+        
+        {/* Certificate-like Elements */}
+        <div className="absolute top-1/4 right-20 w-16 h-12 border-2 border-blue-300/20 dark:border-blue-600/20 rounded animate-float-slow"></div>
+        <div className="absolute bottom-1/3 left-16 w-12 h-10 border-2 border-purple-300/20 dark:border-purple-600/20 rounded animate-float-reverse"></div>
+        
+        {/* Geometric Shapes */}
+        <div className="absolute top-1/2 right-1/3 w-14 h-14 border border-blue-300/20 dark:border-blue-600/20 rotate-45 animate-spin-slow"></div>
+        <div className="absolute bottom-20 left-20 w-10 h-10 border border-purple-300/20 dark:border-purple-600/20 rotate-12 animate-float"></div>
+      </div>
+
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="w-full mx-auto">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 animate-fade-in-up">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Certifications & Education
             </h2>
@@ -59,16 +75,16 @@ const Certifications = () => {
           </div>
           
           {/* Certifications */}
-          <div className="mb-12">
+          <div className="mb-12 animate-fade-in-up delay-300">
             <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-gray-800 dark:text-white text-center">Certifications</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {certifications.map((cert, index) => (
-                <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/50 hover:shadow-lg dark:hover:shadow-gray-900/70 transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700">
+                <div key={index} className={`bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-900/50 hover:shadow-xl dark:hover:shadow-gray-900/70 transition-all duration-500 overflow-hidden border border-gray-100 dark:border-gray-700 hover:-translate-y-2 hover:border-blue-300/50 dark:hover:border-blue-600/50 group animate-fade-in-up`} style={{ animationDelay: `${500 + index * 200}ms` }}>
                   <div className="p-6">
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <h4 className="text-lg font-bold text-gray-800 dark:text-white mb-2 leading-tight">{cert.title}</h4>
+                        <h4 className="text-lg font-bold text-gray-800 dark:text-white mb-2 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">{cert.title}</h4>
                         <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-1">{cert.provider}</p>
                         <p className="text-gray-500 dark:text-gray-400 text-sm">{cert.date}</p>
                       </div>

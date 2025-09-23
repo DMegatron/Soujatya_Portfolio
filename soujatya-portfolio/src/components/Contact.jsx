@@ -121,27 +121,62 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-slate-100 dark:bg-gray-900 text-gray-800 dark:text-white w-full transition-colors duration-300">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-slate-100 dark:bg-gray-900 text-gray-800 dark:text-white w-full transition-colors duration-300 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating Message Icons */}
+        <div className="absolute top-20 left-[10%] text-blue-400 opacity-10 animate-float">
+          <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4.7l-8 5.334L4 8.7V6.297l8 5.333 8-5.333V8.7z"/>
+          </svg>
+        </div>
+        <div className="absolute top-40 right-[15%] text-purple-400 opacity-10 animate-float-delayed">
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-32 left-[20%] text-green-400 opacity-10 animate-float">
+          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        
+        {/* Connection Network Lines */}
+        <div className="absolute top-1/4 right-[8%] w-16 h-16 border border-blue-400/20 rounded-full animate-pulse-soft"></div>
+        <div className="absolute bottom-1/3 left-[12%] w-12 h-12 border border-purple-400/20 rounded-full animate-pulse-soft animation-delay-1000"></div>
+        
+        {/* Floating Contact Symbols */}
+        <div className="absolute top-60 right-[25%] text-indigo-400 opacity-8 animate-float-delayed">
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-20 right-[35%] text-cyan-400 opacity-8 animate-float">
+          <span className="text-sm font-mono">@</span>
+        </div>
+      </div>
+
+      <div className="w-full px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in-up">
             <h2 className="text-3xl sm:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Get In Touch
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
               Let's connect and discuss opportunities, collaborations, or just chat about technology.
             </p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-start">
             {/* Contact Information */}
-            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-colors duration-300 h-full min-h-[600px] flex flex-col">
+            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-all duration-300 h-full min-h-[600px] flex flex-col animate-fade-in-up animation-delay-400 hover:shadow-xl hover:scale-[1.02] group">
               <h3 className="text-xl font-semibold mb-8 text-gray-800 dark:text-white">Contact Information</h3>
               
               <div className="space-y-6 flex-1">
                 {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start">
-                    <div className="bg-blue-600 dark:bg-blue-600 p-3 rounded-lg mr-4 flex-shrink-0">
+                  <div key={index} className={`flex items-start animate-fade-in-up group/item hover:bg-gray-50 dark:hover:bg-gray-700/50 p-3 rounded-lg transition-all duration-300 hover:scale-105`} style={{animationDelay: `${600 + index * 100}ms`}}>
+                    <div className="bg-blue-600 dark:bg-blue-600 p-3 rounded-lg mr-4 flex-shrink-0 group-hover/item:scale-110 group-hover/item:shadow-lg transition-all duration-300">
                       {info.icon}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -149,7 +184,7 @@ const Contact = () => {
                       {info.link ? (
                         <a 
                           href={info.link} 
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 break-all"
+                          className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 break-all hover:underline"
                         >
                           {info.value}
                         </a>
@@ -161,7 +196,7 @@ const Contact = () => {
                 ))}
                 
                 {/* Social Links */}
-                <div className="mt-8">
+                <div className="mt-8 animate-fade-in-up animation-delay-1000">
                   <h4 className="font-semibold mb-4 text-gray-800 dark:text-white">Connect With Me</h4>
                   <div className="flex space-x-4">
                     {socialLinks.map((social, index) => (
@@ -170,7 +205,8 @@ const Contact = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`bg-gray-200 dark:bg-gray-700 p-3 rounded-lg ${social.color} transition-colors duration-300`}
+                        className={`bg-gray-200 dark:bg-gray-700 p-3 rounded-lg ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg animate-scale-in`}
+                        style={{animationDelay: `${1200 + index * 100}ms`}}
                         title={social.name}
                       >
                         {social.icon}
@@ -181,22 +217,22 @@ const Contact = () => {
               </div>
               
               {/* Availability */}
-              <div className="bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 p-6 rounded-lg mt-8">
+              <div className="bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 p-6 rounded-lg mt-8 animate-fade-in-up animation-delay-1600 hover:bg-green-200 dark:hover:bg-green-900/40 transition-all duration-300 hover:scale-105">
                 <h4 className="font-semibold mb-2 text-green-700 dark:text-green-400">Currently Available</h4>
                 <p className="text-green-600 dark:text-gray-300 leading-relaxed">
-                  Seeking internship and full-time opportunities. Available for immediate start after graduation in 2026.
+                  Seeking internship and full-time opportunities. Available for working remote or on-site.
                 </p>
               </div>
             </div>
             
             {/* Contact Form */}
-            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-colors duration-300 h-full min-h-[600px] flex flex-col">
+            <div className="bg-white/90 dark:bg-gray-800 rounded-xl shadow-lg p-8 lg:p-10 border border-gray-200 dark:border-gray-700 backdrop-blur-sm transition-all duration-300 h-full min-h-[600px] flex flex-col animate-fade-in-up animation-delay-800 hover:shadow-xl hover:scale-[1.02]">
               <h3 className="text-xl font-semibold mb-8 text-gray-800 dark:text-white">Send a Message</h3>
               
               <form ref={form} onSubmit={handleSubmit} className="space-y-6 flex-1">
                 {/* Status Message */}
                 {status.message && (
-                  <div className={`p-4 rounded-lg border ${
+                  <div className={`p-4 rounded-lg border animate-fade-in-up ${
                     status.type === 'success' 
                       ? 'bg-green-100 dark:bg-green-900/30 border-green-300 dark:border-green-700 text-green-700 dark:text-green-400'
                       : 'bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-700 text-red-700 dark:text-red-400'
@@ -220,8 +256,8 @@ const Contact = () => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-in-up animation-delay-1000">
+                  <div className="group">
                     <input
                       type="text"
                       id="name"
@@ -230,12 +266,12 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
                       placeholder="Full Name *"
                     />
                   </div>
                   
-                  <div>
+                  <div className="group">
                     <input
                       type="email"
                       id="email"
@@ -244,13 +280,13 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       disabled={isLoading}
-                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
                       placeholder="Email Address *"
                     />
                   </div>
                 </div>
                 
-                <div>
+                <div className="animate-fade-in-up animation-delay-1200 group">
                   <input
                     type="text"
                     id="subject"
@@ -259,12 +295,12 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     disabled={isLoading}
-                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 dark:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
                     placeholder="Subject *"
                   />
                 </div>
                 
-                <div className="flex-1">
+                <div className="flex-1 animate-fade-in-up animation-delay-1400 group">
                   <textarea
                     id="message"
                     name="message"
@@ -273,7 +309,7 @@ const Contact = () => {
                     required
                     disabled={isLoading}
                     rows="6"
-                    className="w-full h-full min-h-[120px] px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 dark:text-white transition-colors duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-full min-h-[120px] px-4 py-3 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 text-gray-800 dark:text-white transition-all duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed group-hover:border-blue-400"
                     placeholder="Your message *"
                   ></textarea>
                 </div>
@@ -281,7 +317,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center"
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center animate-fade-in-up animation-delay-1600 hover:scale-105 hover:shadow-lg active:scale-95"
                 >
                   {isLoading ? (
                     <>
@@ -302,7 +338,7 @@ const Contact = () => {
                 </button>
               </form>
               
-              <p className="text-gray-500 dark:text-gray-400 text-xs text-center mt-4">
+              <p className="text-gray-500 dark:text-gray-400 text-xs text-center mt-4 animate-fade-in-up animation-delay-1800">
                 📧 I typically respond within 24 hours
               </p>
             </div>
