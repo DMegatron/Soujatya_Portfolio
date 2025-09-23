@@ -56,9 +56,20 @@ const Hero = () => {
 
       <div className="w-full px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="max-w-7xl mx-auto">
-          {/* Static Name */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight animate-fade-in-up">
-            SOUJATYA BHUNIA
+          {/* Animated Name with letter-by-letter reveal */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+            {['S','O','U','J','A','T','Y','A',' ','B','H','U','N','I','A'].map((letter, index) => (
+              <span 
+                key={index}
+                className="inline-block animate-fade-in-up opacity-0"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: 'both'
+                }}
+              >
+                {letter === ' ' ? '\u00A0' : letter}
+              </span>
+            ))}
           </h1>
           
           {/* Typewriter effect for role */}

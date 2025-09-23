@@ -1,4 +1,5 @@
    import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext.jsx';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,21 +13,23 @@ import './index.css';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <section id="home">
-          <Hero />
-        </section>
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="App min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+        <Header />
+        <main>
+          <section id="home">
+            <Hero />
+          </section>
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 
