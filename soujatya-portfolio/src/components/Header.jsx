@@ -37,10 +37,8 @@ const Header = () => {
 
   // Play secret song
   const playSecretSong = () => {
-    // Try to play custom music file first - using nggyu.mp3 that exists in the folder
+    // Try to play custom music file first
     const customMusicPath = `${import.meta.env.VITE_CUSTOM_MUSIC_PATH || '/music/'}nggyu.mp3`;
-    
-    console.log('Attempting to play:', customMusicPath); // Debug log
     
     // Create or reuse audio element
     if (!audioRef.current) {
@@ -54,40 +52,28 @@ const Header = () => {
       return;
     }
 
-    // Set up event handlers before setting src
-    audioRef.current.oncanplaythrough = () => {
-      console.log('Audio can play through'); // Debug log
+    // Try to load and play custom music file
+    audioRef.current.src = customMusicPath;
+    audioRef.current.load();
+    
+    const playCustomAudio = () => {
       audioRef.current.play()
         .then(() => {
-          console.log('Audio playing successfully'); // Debug log
           setIsPlaying(true);
-          audioRef.current.onended = () => {
-            console.log('Audio ended'); // Debug log
-            setIsPlaying(false);
-          };
+          audioRef.current.onended = () => setIsPlaying(false);
         })
-        .catch((error) => {
-          console.log('Play failed:', error); // Debug log
+        .catch(() => {
+          // Fallback to synthesized audio if custom file fails
           playFallbackAudio();
         });
     };
 
-    audioRef.current.onerror = (error) => {
-      console.log('Audio loading error:', error); // Debug log
-      playFallbackAudio();
-    };
-
-    audioRef.current.onloadstart = () => {
-      console.log('Audio load started'); // Debug log
-    };
-
-    // Try to load and play custom music file
-    audioRef.current.src = customMusicPath;
-    audioRef.current.load();
+    // Check if custom file exists/loads
+    audioRef.current.oncanplaythrough = playCustomAudio;
+    audioRef.current.onerror = playFallbackAudio;
 
     // Fallback synthesized audio function
     function playFallbackAudio() {
-      console.log('Playing fallback audio'); // Debug log
       try {
         // Create a simple audio context for beep sound
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -113,7 +99,7 @@ const Header = () => {
         
         setIsPlaying(true);
       } catch (error) {
-        console.log('Audio not supported:', error);
+        console.log('Audio not supported');
         setIsPlaying(false);
       }
     }
