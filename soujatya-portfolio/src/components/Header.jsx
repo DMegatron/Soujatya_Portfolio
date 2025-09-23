@@ -1,10 +1,123 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTheme } from '../contexts/ThemeContext.jsx';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showThemeMenu, setShowThemeMenu] = useState(false);
+  const [secretCode, setSecretCode] = useState('');
+  const [isSecretInputFocused, setIsSecretInputFocused] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
   const { theme, changeTheme } = useTheme();
+
+  // Handle secret code input
+  const handleSecretInput = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (secretCode === import.meta.env.VITE_SECRET_CODE) {
+        playSecretSong();
+        setSecretCode('');
+        setIsSecretInputFocused(false);
+      } else {
+        setSecretCode('');
+      }
+    }
+  };
+
+  // Handle send button click
+  const handleSendClick = () => {
+    if (secretCode === import.meta.env.VITE_SECRET_CODE) {
+      playSecretSong();
+      setSecretCode('');
+      setIsSecretInputFocused(false);
+    } else {
+      setSecretCode('');
+    }
+  };
+
+  // Play secret song
+  const playSecretSong = () => {
+    // Try to play custom music file first - using nggyu.mp3 that exists in the folder
+    const customMusicPath = `${import.meta.env.VITE_CUSTOM_MUSIC_PATH || '/music/'}nggyu.mp3`;
+    
+    console.log('Attempting to play:', customMusicPath); // Debug log
+    
+    // Create or reuse audio element
+    if (!audioRef.current) {
+      audioRef.current = new Audio();
+    }
+
+    if (isPlaying) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setIsPlaying(false);
+      return;
+    }
+
+    // Set up event handlers before setting src
+    audioRef.current.oncanplaythrough = () => {
+      console.log('Audio can play through'); // Debug log
+      audioRef.current.play()
+        .then(() => {
+          console.log('Audio playing successfully'); // Debug log
+          setIsPlaying(true);
+          audioRef.current.onended = () => {
+            console.log('Audio ended'); // Debug log
+            setIsPlaying(false);
+          };
+        })
+        .catch((error) => {
+          console.log('Play failed:', error); // Debug log
+          playFallbackAudio();
+        });
+    };
+
+    audioRef.current.onerror = (error) => {
+      console.log('Audio loading error:', error); // Debug log
+      playFallbackAudio();
+    };
+
+    audioRef.current.onloadstart = () => {
+      console.log('Audio load started'); // Debug log
+    };
+
+    // Try to load and play custom music file
+    audioRef.current.src = customMusicPath;
+    audioRef.current.load();
+
+    // Fallback synthesized audio function
+    function playFallbackAudio() {
+      console.log('Playing fallback audio'); // Debug log
+      try {
+        // Create a simple audio context for beep sound
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 1);
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 1);
+        
+        oscillator.onended = () => {
+          setIsPlaying(false);
+          audioContext.close();
+        };
+        
+        setIsPlaying(true);
+      } catch (error) {
+        console.log('Audio not supported:', error);
+        setIsPlaying(false);
+      }
+    }
+  };
 
   const ThemeIcon = () => {
     switch (theme) {
@@ -33,8 +146,40 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm text-gray-900 dark:text-white z-50 border-b border-gray-200 dark:border-gray-800 transition-all duration-300 animate-slide-down">
       <nav className="w-full px-4 sm:px-6 lg:px-8 py-4">
         <div className="w-full flex items-center justify-between">
-          <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in-up hover:scale-105 transition-transform duration-300 cursor-pointer">
-            Soujatya Bhunia
+          <div className="flex items-center space-x-3">
+            <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-fade-in-up hover:scale-105 transition-transform duration-300 cursor-pointer">
+              Soujatya Bhunia
+            </div>
+            
+            {/* Secret Music Input Field */}
+            <div className="relative flex items-center animate-scale-in animation-delay-200">
+              <input
+                type="text"
+                value={secretCode}
+                onChange={(e) => setSecretCode(e.target.value)}
+                onKeyPress={handleSecretInput}
+                onFocus={() => setIsSecretInputFocused(true)}
+                onBlur={() => {
+                  setTimeout(() => setIsSecretInputFocused(false), 200); // Increased delay
+                }}
+                className="bg-transparent border-none outline-none text-sm text-gray-600 dark:text-gray-400 placeholder-gray-400 dark:placeholder-gray-500 w-8 focus:w-12 transition-all duration-300"
+              />
+              
+              {isSecretInputFocused && secretCode && (
+                <button
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // Prevent input from losing focus
+                    handleSendClick();
+                  }}
+                  className="ml-1 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 animate-fade-in-left"
+                  title="Send"
+                >
+                  <svg className="w-4 h-4 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                </button>
+              )}
+            </div>
           </div>
           
           {/* Desktop Navigation */}
@@ -216,6 +361,14 @@ const Header = () => {
           </div>
         )}
       </nav>
+      
+      {/* Hidden Audio Element for Secret Song */}
+      <audio
+        ref={audioRef}
+        onEnded={() => setIsPlaying(false)}
+        onError={() => setIsPlaying(false)}
+        preload="none"
+      />
     </header>
   );
 };
