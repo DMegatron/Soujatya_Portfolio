@@ -27,13 +27,13 @@ const Experience = () => {
           
           <div className="relative max-w-4xl mx-auto">
             {/* Timeline line */}
-            <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 animate-timeline-draw"></div>
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-blue-500 animate-timeline-draw"></div>
             
-            <div className="relative pl-16 sm:pl-20">
+            <div className="relative pl-16">
               {/* Experience Item */}
               <div className="mb-12 animate-fade-in-left delay-300">
-                {/* Timeline dot */}
-                <div className="absolute left-3 sm:left-5 top-6 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg flex items-center justify-center animate-scale-in delay-500 hover:scale-110 transition-transform duration-300">
+                {/* Timeline dot - perfectly centered with custom positioning */}
+                <div className="absolute top-6 w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg flex items-center justify-center animate-scale-in delay-500 hover:scale-110 transition-transform duration-300" style={{left: '-3.15rem'}}>
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse-soft"></div>
                 </div>
                 
