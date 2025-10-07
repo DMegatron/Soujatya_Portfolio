@@ -9,6 +9,19 @@ const SEOContentHub = () => {
         <h1 itemProp="headline">The Complete Guide to Modern Software Development and Computer Science</h1>
         <div itemProp="articleBody">
           <section>
+            <h2>About Soujatya Bhunia - Full Stack Developer Portfolio</h2>
+            <p>
+              Soujatya Bhunia, also known as Soujayta Bhunia, Soujatia Bhunia, or Soujatya Bhuniya, is a passionate Full Stack Developer 
+              and Computer Science Engineering student. Whether you search for Soujatya Bhunia, Soujatyabhunia, Soujatya B, Sujatya Bhunia, 
+              Soujyta Bhunia, just Soujatya, Soujayta, Soujatia, Sujatya, Soujyta, or surname Bhunia, Bhuniya, you'll find the same dedicated professional specializing in React, Node.js, PHP, and modern web technologies. 
+              Currently working as a Software Development Intern at KATSI Canada while pursuing B.Tech in Computer Science Engineering 
+              from Adamas University. This portfolio showcases expertise in full-stack development, frontend engineering, backend architecture, 
+              database design, cloud computing, DevOps practices, and software engineering principles. Connect with Soujatya Bhunia for 
+              cutting-edge web development solutions, innovative digital experiences, and scalable software applications.
+            </p>
+          </section>
+          
+          <section>
             <h2>Frontend Development Mastery</h2>
             <p>
               Frontend development encompasses the creation of user interfaces using modern technologies like React, Vue, Angular, 
