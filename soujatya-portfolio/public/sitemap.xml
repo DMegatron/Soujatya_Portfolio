@@ -12,14 +12,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Vercel Mirror -->
-  <url>
-    <loc>https://soujatya-portfolio.vercel.app/</loc>
-    <lastmod>2025-10-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
   <!-- Section Pages -->
   <url>
     <loc>https://www.soujatya.me/#home</loc>
