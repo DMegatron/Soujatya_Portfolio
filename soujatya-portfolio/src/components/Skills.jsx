@@ -1,112 +1,151 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaJava, FaReact, FaNodeJs, FaGitAlt, FaGithub, FaFigma, FaProjectDiagram } from 'react-icons/fa';
+import { SiC, SiCplusplus, SiJavascript, SiPhp, SiGo, SiHtml5, SiCss3, SiExpress, SiMysql, SiMongodb, SiPostman } from 'react-icons/si';
+import SectionBackground from './SectionBackground';
+
+const technicalSkills = [
+  { name: "C", color: "bg-blue-600", icon: <SiC className="text-xl" /> },
+  { name: "C++", color: "bg-indigo-500", icon: <SiCplusplus className="text-xl" /> },
+  { name: "Java", color: "bg-red-500", icon: <FaJava className="text-xl" /> },
+  { name: "JavaScript", color: "bg-yellow-500", icon: <SiJavascript className="text-xl" /> },
+  { name: "PHP", color: "bg-purple-500", icon: <SiPhp className="text-xl" /> },
+  { name: "GO", color: "bg-cyan-600", icon: <SiGo className="text-xl" /> },
+  { name: "HTML", color: "bg-orange-500", icon: <SiHtml5 className="text-xl" /> },
+  { name: "CSS", color: "bg-blue-500", icon: <SiCss3 className="text-xl" /> },
+  { name: "React JS", color: "bg-cyan-500", icon: <FaReact className="text-xl" /> },
+  { name: "Node", color: "bg-green-600", icon: <FaNodeJs className="text-xl" /> },
+  { name: "Express", color: "bg-gray-700", icon: <SiExpress className="text-xl" /> },
+  { name: "MySQL", color: "bg-blue-700", icon: <SiMysql className="text-xl" /> },
+  { name: "MongoDB", color: "bg-green-500", icon: <SiMongodb className="text-xl" /> }
+];
+
+const softwareProficiency = [
+  { name: "Git", color: "bg-red-600", icon: <FaGitAlt className="text-xl" /> },
+  { name: "GitHub", color: "bg-slate-700", icon: <FaGithub className="text-xl" /> },
+  { name: "Postman", color: "bg-orange-600", icon: <SiPostman className="text-xl" /> },
+  { name: "Visual Paradigm", color: "bg-purple-600", icon: <FaProjectDiagram className="text-xl" /> },
+  { name: "Figma", color: "bg-pink-500", icon: <FaFigma className="text-xl" /> }
+];
+
+const languages = [
+  { name: "English", level: "Professional Proficiency" },
+  { name: "Hindi", level: "Professional Proficiency" },
+  { name: "Bengali", level: "Native Proficiency" }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }
+  }
+};
+
+const SkillBadge = ({ skill }) => (
+  <motion.div
+    variants={itemVariants}
+    whileHover={{ scale: 1.1, rotate: 3 }}
+    whileTap={{ scale: 0.95 }}
+    className={`${skill.color} text-white px-5 py-3 rounded-xl text-sm font-medium shadow-lg cursor-pointer flex items-center gap-3 hover:shadow-xl transition-shadow`}
+  >
+    {skill.icon}
+    <span>{skill.name}</span>
+  </motion.div>
+);
 
 const Skills = () => {
-  // Technical Skills
-  const technicalSkills = [
-    { name: "C", color: "bg-blue-600" },
-    { name: "C++", color: "bg-indigo-500" },
-    { name: "Java", color: "bg-red-500" },
-    { name: "JavaScript", color: "bg-yellow-500" },
-    { name: "PHP", color: "bg-purple-500" },
-    { name: "GO", color: "bg-cyan-600" },
-    { name: "HTML", color: "bg-orange-500" },
-    { name: "CSS", color: "bg-blue-500" },
-    { name: "React JS", color: "bg-cyan-500" },
-    { name: "Node", color: "bg-green-600" },
-    { name: "Express", color: "bg-gray-700" },
-    { name: "MySQL", color: "bg-blue-700" },
-    { name: "MongoDB", color: "bg-green-500" }
-  ];
-
-  // Software Proficiency
-  const softwareProficiency = [
-    { name: "Git", color: "bg-red-600" },
-    { name: "GitHub", color: "bg-slate-700" },
-    { name: "Postman", color: "bg-orange-600" },
-    { name: "Visual Paradigm", color: "bg-purple-600" },
-    { name: "Figma", color: "bg-pink-500" }
-  ];
-
-  const languages = [
-    { name: "English", level: "Professional Proficiency"},
-    { name: "Hindi", level: "Professional Proficiency"},
-    { name: "Bengali", level: "Native Proficiency"}
-  ];
-
-  const SkillBadge = ({ skill, index = 0 }) => (
-    <div className={`${skill.color} text-white px-4 py-2 rounded-full text-sm font-medium hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl animate-scale-in cursor-pointer`} 
-         style={{ animationDelay: `${index * 100}ms` }}>
-      {skill.name}
-    </div>
-  );
-
   return (
-    <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-slate-100 dark:bg-gray-950 w-full transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Elements */}
-        <div className="absolute top-16 left-16 w-20 h-20 bg-blue-500/10 rounded-full animate-float"></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-purple-500/10 rounded-full animate-float-reverse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-12 h-12 bg-green-500/10 rounded-full animate-bounce delay-2000"></div>
-        
-        {/* Code-like Elements */}
-        <div className="absolute top-20 right-20 text-6xl text-blue-300/10 dark:text-blue-600/10 animate-float-slow">&lt;/&gt;</div>
-        <div className="absolute bottom-20 left-20 text-4xl text-purple-300/10 dark:text-purple-600/10 animate-float-reverse">{}</div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-1/2 left-10 w-14 h-14 border border-blue-300/20 dark:border-blue-600/20 rotate-45 animate-spin-slow"></div>
-        <div className="absolute bottom-1/3 right-10 w-10 h-10 border border-purple-300/20 dark:border-purple-600/20 rotate-12 animate-float"></div>
-      </div>
-
-      <div className="w-full px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="w-full mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-16 text-gray-800 dark:text-white animate-fade-in-up">
+    <section id="skills" className="relative py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+      <SectionBackground />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Skills & Technologies
           </h2>
-          
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            A comprehensive overview of my technical expertise and tools I use to build digital solutions.
+          </p>
+        </motion.div>
+
+        <div className="space-y-16">
           {/* Technical Skills */}
-          <div className="mb-8 bg-slate-50 dark:bg-gray-900 rounded-2xl p-8 shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-blue-300/50 dark:hover:border-blue-600/50 group animate-fade-in-up delay-300">
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-8 text-gray-800 dark:text-white text-center group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+          <div>
+            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
               Technical Skills
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="flex flex-wrap justify-center gap-4"
+            >
               {technicalSkills.map((skill, index) => (
-                <SkillBadge key={index} skill={skill} index={index} />
+                <SkillBadge key={index} skill={skill} />
               ))}
-            </div>
+            </motion.div>
           </div>
-          
+
           {/* Software Proficiency */}
-          <div className="mb-8 bg-gray-200 dark:bg-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-600 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 hover:border-purple-300/50 dark:hover:border-purple-600/50 group animate-fade-in-up delay-500">
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-8 text-gray-800 dark:text-white text-center group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+          <div>
+            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
               Software Proficiency
             </h3>
-            <div className="flex flex-wrap justify-center gap-4">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="flex flex-wrap justify-center gap-4"
+            >
               {softwareProficiency.map((skill, index) => (
-                <SkillBadge key={index} skill={skill} index={index + technicalSkills.length} />
+                <SkillBadge key={index} skill={skill} />
               ))}
-            </div>
+            </motion.div>
           </div>
-          
+
           {/* Languages */}
-          <div className="mb-16">
-            <h3 className="text-2xl sm:text-3xl font-semibold mb-8 text-white text-center">
+          <div>
+            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
               Languages
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {languages.map((language, index) => {
-                const colors = [
-                  "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-800/60 dark:to-blue-700/60 border-blue-200 dark:border-blue-500",
-                  "bg-gradient-to-br from-green-50 to-green-100 dark:from-green-800/60 dark:to-green-700/60 border-green-200 dark:border-green-500", 
-                  "bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-800/60 dark:to-purple-700/60 border-purple-200 dark:border-purple-500"
-                ];
-                return (
-                  <div key={index} className={`${colors[index]} p-6 rounded-xl shadow-md dark:shadow-gray-900/50 text-center border-2 hover:shadow-lg dark:hover:shadow-gray-900/70 transition-all duration-300 transform hover:scale-105`}>
-                    <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-3">{language.name}</h4>
-                    <p className="text-gray-600 dark:text-gray-200 text-sm font-medium">{language.level}</p>
-                  </div>
-                );
-              })}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {languages.map((lang, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-gray-100 dark:border-slate-800 text-center"
+                >
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{lang.name}</h4>
+                  <p className="text-primary-600 dark:text-primary-400 font-medium">{lang.level}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
