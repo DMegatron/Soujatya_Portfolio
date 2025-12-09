@@ -33,9 +33,10 @@ const Contact = () => {
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
       const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
+        name: formData.name,
+        email: formData.email,
+        title: formData.subject,
+        time: new Date().toLocaleString(),
         message: formData.message,
         to_email: 'soujatyabhunia2003@gmail.com'
       };
