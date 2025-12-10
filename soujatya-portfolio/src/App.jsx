@@ -1,4 +1,5 @@
    import React from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from './contexts/ThemeContext.jsx';
 import SEO from './components/SEO';
 import TechSkillsSchema from './components/TechSkillsSchema';
@@ -17,6 +18,7 @@ import './index.css';
 function App() {
   return (
     <ThemeProvider>
+      <Analytics />
       <SEO />
       <TechSkillsSchema />
       <SEOContentHub />
