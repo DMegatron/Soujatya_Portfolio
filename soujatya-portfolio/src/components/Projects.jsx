@@ -82,7 +82,7 @@ const ProjectCard = ({ project }) => (
         {project.title}
       </h3>
       {project.status && (
-        <span className="px-3 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 rounded-full">
+        <span className="px-3 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 rounded-full whitespace-nowrap">
           {project.status}
         </span>
       )}
