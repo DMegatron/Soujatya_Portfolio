@@ -41,11 +41,11 @@ const Footer = () => {
         )}
       </AnimatePresence>
       
-      <footer className="relative bg-sky-100 dark:bg-slate-900 pt-10 pb-6 overflow-hidden">
+      <footer className="relative bg-sky-100 dark:bg-slate-900 pt-8 md:pt-10 pb-6 overflow-hidden">
         <SectionBackground />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
             {/* Brand */}
             <div className="space-y-3">
               <h3 className="text-xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">

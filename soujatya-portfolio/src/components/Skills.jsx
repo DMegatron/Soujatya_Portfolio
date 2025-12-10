@@ -62,7 +62,7 @@ const SkillBadge = ({ skill }) => (
     variants={itemVariants}
     whileHover={{ scale: 1.1, rotate: 3 }}
     whileTap={{ scale: 0.95 }}
-    className={`${skill.color} text-white px-5 py-3 rounded-xl text-sm font-medium shadow-lg cursor-pointer flex items-center gap-3 hover:shadow-xl transition-shadow`}
+    className={`${skill.color} text-white px-4 py-2 md:px-5 md:py-3 rounded-xl text-sm font-medium shadow-lg cursor-pointer flex items-center gap-3 hover:shadow-xl transition-shadow`}
   >
     {skill.icon}
     <span>{skill.name}</span>
@@ -71,7 +71,7 @@ const SkillBadge = ({ skill }) => (
 
 const Skills = () => {
   return (
-    <section id="skills" className="relative py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <section id="skills" className="relative py-12 md:py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       <SectionBackground />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,7 +79,7 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Skills & Technologies
@@ -89,10 +89,10 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="space-y-10 md:space-y-16">
           {/* Technical Skills */}
           <div>
-            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-2xl font-semibold mb-6 md:mb-8 text-center text-gray-800 dark:text-gray-200">
               Technical Skills
             </h3>
             <motion.div
@@ -110,7 +110,7 @@ const Skills = () => {
 
           {/* Software Proficiency */}
           <div>
-            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-2xl font-semibold mb-6 md:mb-8 text-center text-gray-800 dark:text-gray-200">
               Software Proficiency
             </h3>
             <motion.div
@@ -128,7 +128,7 @@ const Skills = () => {
 
           {/* Languages */}
           <div>
-            <h3 className="text-2xl font-semibold mb-8 text-center text-gray-800 dark:text-gray-200">
+            <h3 className="text-2xl font-semibold mb-6 md:mb-8 text-center text-gray-800 dark:text-gray-200">
               Languages
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">

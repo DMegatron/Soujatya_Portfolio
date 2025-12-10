@@ -119,7 +119,7 @@ const ProjectCard = ({ project }) => (
 
 const Projects = () => {
   return (
-    <section id="projects" className="relative py-20 bg-sky-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+    <section id="projects" className="relative py-12 md:py-20 bg-sky-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
       <SectionBackground />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,7 +127,7 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Featured Projects
@@ -142,7 +142,7 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} />

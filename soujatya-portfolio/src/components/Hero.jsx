@@ -39,7 +39,7 @@ const Hero = () => {
   }, [displayedText, currentTextIndex, isDeleting, texts]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-sky-50 dark:bg-slate-950 transition-colors duration-300">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-16 md:pt-20 overflow-hidden bg-sky-50 dark:bg-slate-950 transition-colors duration-300">
       <SectionBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -48,15 +48,15 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-tight mb-6">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight mb-4 md:mb-6">
             <span className="text-gray-900 dark:text-white">Soujatya</span>{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-primary-400 dark:to-secondary-400">
               Bhunia
             </span>
           </h1>
 
-          <div className="h-12 sm:h-16 mb-8 flex items-center justify-center">
-            <span className="text-xl sm:text-3xl text-gray-600 dark:text-gray-300 font-light">
+          <div className="h-10 sm:h-16 mb-8 flex items-center justify-center">
+            <span className="text-lg sm:text-3xl text-gray-600 dark:text-gray-300 font-light">
               I'm a{' '}
               <span className="font-semibold text-primary-600 dark:text-primary-400">
                 {displayedText}
@@ -65,12 +65,12 @@ const Hero = () => {
             </span>
           </div>
 
-          <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 mb-10 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-400 mb-8 md:mb-10 leading-relaxed">
             Passionate about creating innovative web solutions and building the future of technology. 
             Specializing in full-stack development with modern technologies.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16">
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -107,7 +107,7 @@ const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-2 sm:gap-6 max-w-4xl mx-auto">
             {[
               { label: 'CGPA', value: '8.26', color: 'text-primary-500' },
               { label: 'Projects', value: '7+', color: 'text-secondary-500' },
@@ -118,12 +118,12 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + index * 0.1 }}
-                className="p-6 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                className="p-3 sm:p-6 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className={`text-4xl font-bold mb-2 ${stat.color}`}>
+                <div className="text-2xl sm:text-4xl font-bold mb-1 sm:mb-2 text-primary-500">
                   {stat.value}
                 </div>
-                <div className="text-gray-600 dark:text-gray-400 font-medium">
+                <div className="text-xs sm:text-base text-gray-600 dark:text-gray-400 font-medium whitespace-nowrap">
                   {stat.label}
                 </div>
               </motion.div>

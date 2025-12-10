@@ -86,7 +86,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="relative py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <section id="contact" className="relative py-12 md:py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       <SectionBackground />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,7 +94,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Get In Touch
@@ -104,7 +104,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -112,7 +112,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-slate-800">
+            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-800">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Contact Information</h3>
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
@@ -163,7 +163,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-green-50/80 dark:bg-green-900/20 backdrop-blur-sm border border-green-100 dark:border-green-900/30 p-6 rounded-2xl">
+            <div className="bg-green-50/80 dark:bg-green-900/20 backdrop-blur-sm border border-green-100 dark:border-green-900/30 p-5 md:p-6 rounded-2xl">
               <h4 className="font-semibold text-green-800 dark:text-green-400 mb-2">Currently Available</h4>
               <p className="text-green-700 dark:text-green-300 text-sm">
                 Seeking internship and full-time opportunities. Available for remote or on-site work.
@@ -176,7 +176,7 @@ const Contact = () => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-slate-800"
+            className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-800"
           >
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h3>
             <form ref={form} onSubmit={handleSubmit} className="space-y-6">

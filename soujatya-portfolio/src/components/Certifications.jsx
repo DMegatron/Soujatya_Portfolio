@@ -48,7 +48,7 @@ const Certifications = () => {
   ];
 
   return (
-    <section id="certifications" className="relative py-20 bg-sky-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
+    <section id="certifications" className="relative py-12 md:py-20 bg-sky-50 dark:bg-slate-900 transition-colors duration-300 overflow-hidden">
       <SectionBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,7 +56,7 @@ const Certifications = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Certifications & Education
@@ -68,13 +68,13 @@ const Certifications = () => {
         </motion.div>
         
         {/* Certifications */}
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <div className="flex items-center justify-center gap-3 mb-8">
             <FaAward className="text-2xl text-primary-600 dark:text-primary-400" />
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Certifications</h3>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
@@ -82,7 +82,7 @@ const Certifications = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+                className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div>
@@ -119,7 +119,7 @@ const Certifications = () => {
         </div>
         
         {/* Education */}
-        <div className="mb-16">
+        <div className="mb-10 md:mb-16">
           <div className="flex items-center justify-center gap-3 mb-8">
             <FaGraduationCap className="text-2xl text-primary-600 dark:text-primary-400" />
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Education</h3>
@@ -177,9 +177,9 @@ const Certifications = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 p-6 sm:p-8 max-w-4xl mx-auto"
+          className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 p-6 md:p-8 max-w-4xl mx-auto"
         >
-          <h3 className="text-xl font-bold mb-8 text-gray-900 dark:text-white text-center">Academic Highlights</h3>
+          <h3 className="text-xl font-bold mb-6 md:mb-8 text-gray-900 dark:text-white text-center">Academic Highlights</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
             <div className="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-1">8.26</div>

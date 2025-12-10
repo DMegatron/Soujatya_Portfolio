@@ -5,7 +5,7 @@ import SectionBackground from './SectionBackground';
 
 const Experience = () => {
   return (
-    <section id="experience" className="relative py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <section id="experience" className="relative py-12 md:py-20 bg-teal-50 dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       <SectionBackground />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +13,7 @@ const Experience = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             Experience
@@ -33,7 +33,7 @@ const Experience = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="mb-12 relative"
+              className="mb-8 md:mb-12 relative"
             >
               {/* Timeline dot */}
               <div className="absolute -left-[2.75rem] sm:-left-[4.75rem] top-6 w-6 h-6 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-full border-4 border-white dark:border-slate-950 shadow-lg flex items-center justify-center z-10">
