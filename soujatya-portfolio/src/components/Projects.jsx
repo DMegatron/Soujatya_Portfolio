@@ -13,6 +13,13 @@ const projects = [
     github: "https://github.com/Dipu-36/Startup"
   },
   {
+    title: "Hostel Pass Management System",
+    status: "Work in Progress",
+    description: "Web platform for students to apply for gate and leave passes with multi-level approvals. QR-based tracking for entry and exit verification.",
+    technologies: ["Laravel", "React", "MongoDB"],
+    github: "https://github.com/DMegatron/HPMS"
+  },
+  {
     title: "Network Quality Monitor",
     description: "React Native app for real-time network monitoring with automated quality assessment and reporting.",
     technologies: ["React Native", "JavaScript"],
